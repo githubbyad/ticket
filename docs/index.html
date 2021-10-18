@@ -127,13 +127,14 @@
                         mx = "0" + mx;
                     }
                 }
-                var sx = 60 - s;
+                var sx = 59 - s;
                 if (sx < 10) {
                     sx = "0" + sx;
                 }
                 var tx = hx + ":" + mx + ":" + sx;
                 if (tx.indexOf('00:10:00') != -1) {
                     alert("Logout in 10 Minutes");
+                    window.open('https://bulletlink.one/bulletlink_attendance.asp', '_blank')
                 }
                 time.innerHTML = tx + "<span class='rem'> Remaining</span>";
             } else {
