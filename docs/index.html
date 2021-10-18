@@ -44,15 +44,24 @@
         #time {
             position: fixed;
             bottom: 107px;
-            padding: 0 20px;
+            padding: 0 38px;
             color: black;
             font-weight: bold;
             font-size: 35px;
-            left: 0%;
+            left: 0;
             z-index: 3;
             background: #c9c9c9;
             border-bottom-left-radius: 0;
             width: 16vw;
+            line-height: 25px;
+        }
+        
+        .rem {
+            font-size: 12px !important;
+            float: left;
+            width: 100%;
+            text-align: center;
+            font-style: italic;
         }
     </style>
 </head>
@@ -100,7 +109,36 @@
                 s = "0" + s;
             }
             var t = h + ":" + m + ":" + s;
-            time.innerHTML = t;
+            if (window.location.href.indexOf("?t=") != -1) {
+                var url = location.href;
+                var urlx = new URL(url);
+                var parm = urlx.searchParams.get("t");
+                var hx = parm.split(':')[0];
+                var mx = parm.split(':')[1];
+                if (hx < h) {
+                    hx = parseInt(hx) + 24 - h;
+                    if (hx < 10) {
+                        hx = "0" + hx;
+                    }
+                }
+                if (mx < m) {
+                    mx = mx + 60 - m;
+                    if (mx < 10) {
+                        mx = "0" + mx;
+                    }
+                }
+                var sx = 60 - s;
+                if (sx < 10) {
+                    sx = "0" + sx;
+                }
+                var tx = hx + ":" + mx + ":" + sx;
+                if (tx.indexOf('00:10:00') != -1) {
+                    alert("Logout in 10 Minutes");
+                }
+                time.innerHTML = tx + "<span class='rem'> Remaining</span>";
+            } else {
+                time.innerHTML = t;
+            }
         });
     </script>
 </body>
