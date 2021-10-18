@@ -97,6 +97,16 @@
         button#skip {
             min-width: 83px;
         }
+        
+        .nomobile {
+            color: red;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+        }
     </style>
 </head>
 
@@ -112,11 +122,11 @@
 
         </div>
         <div class="logout-select-2">
-            <p class="my-3">Select Time</p>
+            <p class="my-5 fs-2"><b>Select Time</b></p>
             <p id="logout-buttons">
-                <button type="button" data-time="03:00" class="lbt btn btn-success me-2">03:00 AM</button>
-                <button type="button" data-time="11:00" class="lbt btn btn-warning me-2">11:00 AM</button>
-                <button type="button" data-time="19:30" class="lbt btn btn-dark">07:30 PM</button>
+                <button type="button" data-time="03:00" class="lbt btn btn-success mb-5 fs-2">03:00 AM</button><br>
+                <button type="button" data-time="11:00" class="lbt btn btn-warning mb-5 fs-2">11:00 AM</button><br>
+                <button type="button" data-time="19:30" class="lbt btn btn-dark fs-2">07:30 PM</button>
             </p>
         </div>
     </div>
@@ -139,7 +149,7 @@
 
     <script>
         if (window.screen.width < 1025) {
-            window.location.replace('https://bulletlink.one/bulletlink_tickets.asp?');
+            document.getElementsByTagName('body')[0].innerHTML = "<h1 class='nomobile'>This page is only accessible on Computer</h1>";
         }
 
         function alert(msg, ctl) {
@@ -163,7 +173,6 @@
             document.getElementById('confirm').addEventListener('click', function() {
                 document.getElementsByClassName('logout-select-1')[0].style.display = "none";
                 document.getElementsByClassName('logout-select-2')[0].style.display = "block";
-                document.getElementsByClassName('logout-cont')[0].style.top = "30%";
             });
             document.getElementById('skip').addEventListener('click', function() {
                 window.location.href = "?t=skip";
