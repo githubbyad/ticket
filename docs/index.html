@@ -140,9 +140,12 @@
     <script>
         function alert(msg, ctl) {
             if (!document.getElementById('f_alert_button')) {
-                document.getElementsByTagName("body")[0].insertAdjacentHTML("beforeend", "<button id='f_alert_button' type='button' data-bs-toggle='modal' data-bs-target='#f_alert' style='display:none;'></button><div class='f_alert_box modal fade' id='f_alert' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='f_alertLabel' aria-hidden='true'><div class='modal-dialog modal-dialog-centered modal-dialog-scrollable'><div class='modal-content'><div class='modal-header' style='display:none'><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div><div class='modal-body text-center' style='white-space: pre-wrap;'>" + msg + "</div><div class='modal-footer d-flex justify-content-center border-0'><button type='button' class='f_alert_close btn btn-dark py-2 px-4' data-bs-dismiss='modal'>Close</button></div></div></div><style>@media (min-width:576px){.modal-dialog{max-width:400px}}</style></div>");
+                document.getElementsByTagName("body")[0].insertAdjacentHTML("beforeend", "<button id='f_alert_button' type='button' data-bs-toggle='modal' data-bs-target='#f_alert' style='display:none;'></button><div class='f_alert_box modal fade' id='f_alert' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='f_alertLabel' aria-hidden='true'><div class='modal-dialog modal-dialog-centered modal-dialog-scrollable'><div class='modal-content'><div class='modal-header' style='display:none'><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div><div class='modal-body text-center' style='white-space: pre-wrap;'>" + msg + "</div><div class='modal-footer d-flex justify-content-center border-0'><button type='button' class='f_alert_close btn btn-dark py-2 px-4' data-bs-dismiss='modal'>OK</button></div></div></div><style>@media (min-width:576px){.modal-dialog{max-width:400px}}</style></div>");
                 document.getElementById('f_alert_button').click();
                 document.getElementsByClassName('f_alert_close')[0].addEventListener('click', function() {
+                    if (document.getElementsByClassName('modal-body')[0].innerHTML == "Logout NOW!") {
+                        tickets.src = "https://bulletlink.one/bulletlink_attendance.asp";
+                    }
                     document.getElementById('f_alert_button').remove();
                     document.getElementsByClassName('f_alert_box')[0].remove();
                     if (ctl) {
@@ -182,7 +185,7 @@
         setInterval(function() {
             staff.src = staff.src;
         }, 300000);
-        setInterval(function() {
+        var s = setInterval(function() {
             var d = new Date();
             var h = d.getHours();
             if (h < 10) {
@@ -203,6 +206,8 @@
                 var parm = urlx.searchParams.get("t");
                 if (parm == "skip") {
                     time.innerHTML = t;
+                } else if (parm == "logout") {
+                    time.innerHTML = "Logout NOW!";
                 } else {
                     var hx = parm.split(':')[0];
                     var mx = parm.split(':')[1];
@@ -219,7 +224,7 @@
                         }
                     }
                     if (mx < m) {
-                        mx = mx + 60 - m;
+                        mx = mx + 59 - m;
                         if (mx < 10) {
                             mx = "0" + mx;
                         }
@@ -229,20 +234,27 @@
                         sx = "0" + sx;
                     }
                     var tx = hx + ":" + mx + ":" + sx;
-                    document.title = tx;
+
                     if (tx.indexOf('00:10:00') != -1) {
                         alert("Logout in 10 Minutes");
-                        window.open('https://bulletlink.one/bulletlink_attendance.asp', '_blank')
+                        window.open('https://bulletlink.one/bulletlink_attendance.asp', '_blank');
                     }
                     if (tx.indexOf('00:00:00') != -1) {
-                        alert("<b style='color:red'>Logout NOW!</b>");
+                        window.history.replaceState({}, document.title, "" + "?t=logout");
+                        document.title = "Logout NOW!";
+                        time.innerHTML = "Logout NOW!";
+                        document.head.insertAdjacentHTML("beforeend", "<style>#time {color:blue;font-size: 20px;}</style>");
+                        alert("Logout NOW!");
+                        clearInterval(s);
+                    } else {
+                        document.title = tx;
                     }
                     time.innerHTML = tx + "<style>#time {color: red;}</style>";
                 }
             } else {
                 time.innerHTML = t;
             }
-        });
+        }, 1000);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
