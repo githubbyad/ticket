@@ -13,69 +13,61 @@
 
     <title>Ticket Page</title>
     <style>
-        #tickets {
-            padding: 10px;
-            background: #ddd;
+        #staff {
+            height: 20vh;
+            background: #c9c9c9;
+            transform: translate(0, -32px);
+            position: relative;
+            z-index: 2;
+            padding-left: 10px !important;
         }
         
         #buzzer {
             padding: 10px;
+            height: 17vh;
+            background: #c9c9c9;
+            transform: translate(0, -55px);
+            box-sizing: border-box;
         }
         
         #ticketcell {
             pointer-events: none;
-        }
-        
-        .cont {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .row1.row {
-            order: 1;
-            height: 20vh;
-        }
-        
-        .row2.row {
-            order: 2;
+            height: 70vh;
+            transform: translate(-53px, -109px);
+            width: auto !important;
         }
         
         #time {
             position: fixed;
-            bottom: 0;
-            border: 2px solid red;
+            bottom: 107px;
             padding: 0 20px;
-            color: white;
+            color: black;
             font-weight: bold;
             font-size: 35px;
             left: 0%;
             z-index: 3;
-            background: red;
-            border-radius: 50px;
+            background: #c9c9c9;
             border-bottom-left-radius: 0;
+            width: 16vw;
         }
     </style>
 </head>
 
 <body style="overflow: hidden;">
     <div class="cont container-fluid px-0">
-        <div class="row2 row">
-            <div class="ticket_page pb-2 col-12 position-relative bg-body" style="z-index: 2;">
-                <iframe id="tickets" src="https://bulletlink.one/bulletlink_tickets.asp?" class="border-0 w-100 px-0" style="height: 80vh;"></iframe>
-            </div>
-        </div>
-        <div class="row1 row">
-            <div class="buzzer_page col-6 position-relative px-0">
+        <div class="row">
+            <div class="col-2 px-0" style="background-color: #c9c9c9;">
+                <iframe id="staff" src="https://bulletlink.one/bulletlink_online_staff.asp" scrolling="no" class="border-0 w-100"></iframe>
+                <iframe id="ticketcell" src="https://bulletlink.one/bulletlink_tickets.asp?cell=0" scrolling="no" class="border-0 w-100"></iframe>
                 <iframe id="buzzer" src="https://bulletlink.one/ticket_status.asp" scrolling="no" class="border-0 w-100" style="height: 25vh;"></iframe>
+
             </div>
-            <div class="staff_page col-2 position-relative px-0" style="transform: translate(0,-31px);">
-                <iframe id="staff" src="https://bulletlink.one/bulletlink_online_staff.asp" scrolling="no" class="border-0 w-100" style="height: 17vh;"></iframe>
-            </div>
-            <div class="cell_page col-4 position-relative px-0" style="transform: translate(0,-70px);">
-                <iframe id="ticketcell" src="https://bulletlink.one/bulletlink_tickets.asp?cell=0" scrolling="no" class="border-0 w-100" style="height: 29vh;"></iframe>
+            <div class="ticket_page col-10 position-relative bg-body" style="z-index: 2;">
+                <iframe id="tickets" src="https://bulletlink.one/bulletlink_tickets.asp?" class="border-0 w-100 px-0" style="height: 100vh;"></iframe>
             </div>
         </div>
-        <div id="time"></div>
+    </div>
+    <div id="time"></div>
     </div>
 
 
