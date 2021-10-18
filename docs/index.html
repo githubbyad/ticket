@@ -229,6 +229,7 @@
                         sx = "0" + sx;
                     }
                     var tx = hx + ":" + mx + ":" + sx;
+                    document.title = tx;
                     if (tx.indexOf('00:10:00') != -1) {
                         alert("Logout in 10 Minutes");
                         window.open('https://bulletlink.one/bulletlink_attendance.asp', '_blank')
