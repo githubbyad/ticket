@@ -234,6 +234,9 @@
                         alert("Logout in 10 Minutes");
                         window.open('https://bulletlink.one/bulletlink_attendance.asp', '_blank')
                     }
+                    if (tx.indexOf('00:00:00') != -1) {
+                        alert("<b style='color:red'>Logout NOW!</b>");
+                    }
                     time.innerHTML = tx + "<style>#time {color: red;}</style>";
                 }
             } else {
