@@ -63,10 +63,63 @@
             text-align: center;
             font-style: italic;
         }
+        
+        .logout-cont {
+            display: none;
+            width: 40%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: 999;
+            background: white;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.6);
+            transform: translate(-50%, -50%);
+        }
+        
+        .logout-close {
+            position: fixed;
+            right: 15px;
+            top: 5px;
+            font-size: 28px;
+            color: black;
+            z-index: 99999;
+            cursor: pointer;
+        }
+        
+        .logout-select-2 {
+            display: none;
+        }
+        
+        button#skip {
+            min-width: 83px;
+        }
     </style>
 </head>
 
 <body style="overflow: hidden;">
+    <div class="logout-cont">
+        <span class="logout-close">✕</span>
+        <div class="logout-select-1">
+            <p class="my-3">Do you want to set <b>Logout</b> time to set Timer on left side?</p>
+            <p id="logout-confirm">
+                <button type="button" id="confirm" class="btn btn-primary me-2">Confirm</button>
+                <button type="button" id="skip" class="btn btn-secondary">Skip</button>
+            </p>
+
+        </div>
+        <div class="logout-select-2">
+            <p class="my-3">Select <b>Logout</b> Time</p>
+            <p id="logout-buttons">
+                <button type="button" data-time="03:00" class="lbt btn btn-success me-2">03:00 AM</button>
+                <button type="button" data-time="11:00" class="lbt btn btn-warning me-2">11:00 AM</button>
+                <button type="button" data-time="19:30" class="lbt btn btn-dark">07:30 PM</button>
+            </p>
+        </div>
+    </div>
     <div class="cont container-fluid px-0">
         <div class="row">
             <div class="col-2 px-0" style="background-color: #c9c9c9;">
@@ -96,6 +149,24 @@
                         ctl.focus();
                     }
                 });
+            }
+        }
+        if (window.location.href.indexOf("?t=") == -1) {
+            document.getElementsByClassName('logout-cont')[0].style.display = "block";
+            document.getElementById('confirm').addEventListener('click', function() {
+                document.getElementsByClassName('logout-select-1')[0].style.display = "none";
+                document.getElementsByClassName('logout-select-2')[0].style.display = "block";
+            });
+            document.getElementById('skip').addEventListener('click', function() {
+                window.location.href = "?t=skip";
+            });
+            document.getElementsByClassName('logout-close')[0].addEventListener('click', function() {
+                window.location.href = "?t=skip";
+            });
+            for (i = 0; i < document.getElementsByClassName('lbt').length; i++) {
+                document.getElementsByClassName('lbt')[i].addEventListener('click', function() {
+                    window.location.href = "?t=" + this.getAttribute('data-time');
+                })
             }
         }
         window.history.pushState(null, "", window.location.href); // Disable Back
@@ -130,30 +201,40 @@
                 var url = location.href;
                 var urlx = new URL(url);
                 var parm = urlx.searchParams.get("t");
-                var hx = parm.split(':')[0];
-                var mx = parm.split(':')[1];
-                if (hx < h) {
-                    hx = parseInt(hx) + 23 - h;
-                    if (hx < 10) {
-                        hx = "0" + hx;
+                if (parm == "skip") {
+                    time.innerHTML = t;
+                } else {
+                    var hx = parm.split(':')[0];
+                    var mx = parm.split(':')[1];
+                    if (hx < h) {
+                        hx = parseInt(hx) + 23 - h;
+                        if (hx < 10) {
+                            hx = "0" + hx;
+                        }
                     }
-                }
-                if (mx < m) {
-                    mx = mx + 60 - m;
-                    if (mx < 10) {
-                        mx = "0" + mx;
+                    if (hx >= h) {
+                        hx = parseInt(hx) - h;
+                        if (hx < 10) {
+                            hx = "0" + hx;
+                        }
                     }
+                    if (mx < m) {
+                        mx = mx + 60 - m;
+                        if (mx < 10) {
+                            mx = "0" + mx;
+                        }
+                    }
+                    var sx = 59 - s;
+                    if (sx < 10) {
+                        sx = "0" + sx;
+                    }
+                    var tx = hx + ":" + mx + ":" + sx;
+                    if (tx.indexOf('00:10:00') != -1) {
+                        alert("Logout in 10 Minutes");
+                        window.open('https://bulletlink.one/bulletlink_attendance.asp', '_blank')
+                    }
+                    time.innerHTML = tx + "<style>#time {color: red;}</style>";
                 }
-                var sx = 59 - s;
-                if (sx < 10) {
-                    sx = "0" + sx;
-                }
-                var tx = hx + ":" + mx + ":" + sx;
-                if (tx.indexOf('00:10:00') != -1) {
-                    alert("Logout in 10 Minutes");
-                    window.open('https://bulletlink.one/bulletlink_attendance.asp', '_blank')
-                }
-                time.innerHTML = tx + "<span class='rem'> Remaining</span>";
             } else {
                 time.innerHTML = t;
             }
