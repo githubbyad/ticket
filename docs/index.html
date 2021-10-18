@@ -85,6 +85,10 @@
 
 
     <script>
+        window.history.pushState(null, "", window.location.href); // Disable Back
+        window.onpopstate = function() {
+            window.history.pushState(null, "", window.location.href);
+        };
         setInterval(function() {
             buzzer.src = buzzer.src;
         }, 15000);
