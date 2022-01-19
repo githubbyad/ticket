@@ -5,645 +5,88 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- fontAwesome-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <!-- /fontAwesome-->
+
+    <title>Work Timeline - Instruction</title>
     <script>
-        // Alert function
-        function alert(msg, btnn) {
-            if (!document.getElementById('f_alert_button')) {
-                document.getElementsByTagName("body")[0].insertAdjacentHTML("beforeend", "<button id='f_alert_button' type='button' data-bs-toggle='modal' data-bs-target='#f_alert' style='display:none;'></button><div class='f_alert_box modal fade' id='f_alert' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='f_alertLabel' aria-hidden='true'><div class='modal-dialog modal-dialog-centered modal-dialog-scrollable'><div class='modal-content'><div class='modal-header' style='display:none'><button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button></div><div class='modal-body text-center fw-bold' style='white-space: pre-wrap;'>" + msg + "</div><div class='modal-footer d-flex justify-content-center border-0'><button type='button' class='f_alert_close btn btn-dark py-2 px-4' data-bs-dismiss='modal'>" + btnn + "</button></div></div></div><style>@media (min-width:576px){.modal-dialog{max-width:400px}}</style></div>");
-                if (document.getElementById('timer5')) {
-                    var timer2 = '05:01';
-                    var interval = setInterval(function() {
-                        var timer = timer2.split(':');
-                        var minutes = parseInt(timer[0], 10);
-                        var seconds = parseInt(timer[1], 10);
-                        --seconds;
-                        minutes = (seconds < 0) ? --minutes : minutes;
-                        if (minutes < 0) {
-                            document.getElementsByClassName('f_alert_close')[0].click();
-                            clearInterval(interval);
-                        }
-                        seconds = (seconds < 0) ? 59 : seconds;
-                        seconds = (seconds < 10) ? '0' + seconds : seconds;
-                        minutes = (minutes < 10) ? '0' + minutes : minutes;
-                        document.getElementById('timer5').innerHTML = minutes + ':' + seconds;
-                        timer2 = minutes + ':' + seconds;
-                        document.getElementsByClassName('f_alert_close')[0].addEventListener('click', function() {
-                            clearInterval(interval);
-                        });
-                    }, 1000);
+        function OpenPopup3(pageUrl, window_type) {
+            if (!document.getElementById('f_Popup3_button')) {
+                if (pageUrl.indexOf('?pul=') != -1) {
+                    var aurl = pageUrl.split('?pul=').pop();
+                    aurl = (aurl.indexOf('http') == -1) ? 'http://' + aurl : aurl; // add http if not added
+                    pageUrl = pageUrl.split('?pul').shift();
+                    var msg = '<figure class="figure"><img id="f-mfp-img" class="mb-0" src="' + pageUrl + '" class="figure-img img-fluid" style="cursor:pointer" onclick="window.open(\'' + aurl + '\', \'_blank\')"></figure>';
+                } else {
+                    var msg = '<figure class="figure"><img id="f-mfp-img" class="mb-0" src="' + pageUrl + '" class="figure-img img-fluid"></figure>';
                 }
-                if (document.getElementById('timer10')) {
-                    var timer2 = '10:01';
-                    var interval = setInterval(function() {
-                        var timer = timer2.split(':');
-                        var minutes = parseInt(timer[0], 10);
-                        var seconds = parseInt(timer[1], 10);
-                        --seconds;
-                        minutes = (seconds < 0) ? --minutes : minutes;
-                        if (minutes < 0) {
-                            document.getElementsByClassName('f_alert_close')[0].click();
-                            clearInterval(interval);
-                        }
-                        seconds = (seconds < 0) ? 59 : seconds;
-                        seconds = (seconds < 10) ? '0' + seconds : seconds;
-                        minutes = (minutes < 10) ? '0' + minutes : minutes;
-                        document.getElementById('timer10').innerHTML = minutes + ':' + seconds;
-                        timer2 = minutes + ':' + seconds;
-                        document.getElementsByClassName('f_alert_close')[0].addEventListener('click', function() {
-                            clearInterval(interval);
-                        });
-                    }, 1000);
-                }
-                if (document.getElementById('timer30')) {
-                    var timer2 = '00:31';
-                    var interval = setInterval(function() {
-                        var timer = timer2.split(':');
-                        var minutes = parseInt(timer[0], 10);
-                        var seconds = parseInt(timer[1], 10);
-                        --seconds;
-                        minutes = (seconds < 0) ? --minutes : minutes;
-                        if (minutes < 0) {
-                            document.getElementsByClassName('f_alert_close')[0].click();
-                            clearInterval(interval);
-                        }
-                        seconds = (seconds < 0) ? 59 : seconds;
-                        seconds = (seconds < 10) ? '0' + seconds : seconds;
-                        minutes = (minutes < 10) ? '0' + minutes : minutes;
-                        document.getElementById('timer30').innerHTML = minutes + ':' + seconds;
-                        timer2 = minutes + ':' + seconds;
-                        document.getElementsByClassName('f_alert_close')[0].addEventListener('click', function() {
-                            clearInterval(interval);
-                        });
-                    }, 1000);
-                }
-                document.getElementById('f_alert_button').click();
-                document.getElementsByClassName('f_alert_close')[0].addEventListener('click', function() {
-                    document.getElementById('f_alert_button').remove();
-                    document.getElementsByClassName('f_alert_box')[0].remove();
+                document.getElementsByTagName("body")[0].insertAdjacentHTML("beforeend", "<button id='f_Popup3_button' type='button' data-bs-toggle='modal' data-bs-target='#f_Popup3' style='display:none;'></button><div class='f_Popup3_box modal fade' id='f_Popup3' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='f_Popup3Label' aria-hidden='true'><div class='modal-dialog modal-dialog-centered modal-dialog-scrollable mx-auto'><div class='modal-content'><button type='button' class='f_Popup3_close btn-close position-absolute' data-bs-dismiss='modal' aria-label='Close'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-x-lg' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z'/><path fill-rule='evenodd' d='M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z'/></svg></button><div class='modal-body text-center' style='white-space: pre-wrap;'>" + msg + "</div></div></div><style>.modal-dialog-scrollable .modal-content {max-height: none;overflow:visible;}.modal-body {padding:0;} .f_Popup3_close{right:-1rem;z-index:999;top:-1rem;background-color:#0d6efd;border-radius:50px;padding:.5rem;opacity:1;box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);background-image:none;color:#fff;display:flex;justify-content:center;align-items:center;font-weight:700;font-size:18px}.f_Popup3_close:hover{color:#fff;background-color: red;opacity:1}.modal-dialog{display:flex;justify-content:center} .modal-content{width:auto;border-width:0} #f-mfp-img{max-height:90vh;max-width: 90vw;} @media (min-width:576px) {.modal-content{width:auto;}.modal-dialog{max-width:800px;}} .modal-content{background:0 0}}</style></div>");
+                document.getElementById('f_Popup3_button').click();
+                document.getElementsByClassName('f_Popup3_close')[0].addEventListener('click', function() {
+                    document.getElementById('f_Popup3_button').remove();
+                    document.getElementsByClassName('f_Popup3_box')[0].remove();
                 });
             }
         }
     </script>
-    <title>Ticket Page</title>
     <style>
-        #staff {
-            height: 112px;
-            background: #c9c9c9;
-            transform: translate(0, -16px);
+        .img-fluidx {
+            max-width: 20%;
+            cursor: zoom-in;
             position: relative;
-            z-index: 2;
-            padding-left: 10px !important;
-            pointer-events: none;
-        }
-        
-        #shift,
-        #live,
-        #ctime,
-        #cbuzzer {
-            background: black;
-            position: fixed;
-            top: 0;
-            z-index: 99;
-            width: 17vw;
-            text-align: center;
-            color: white;
-            line-height: 35px;
-            font-size: 13px;
-            text-align: left;
-            padding-left: 23px;
-            display: flex;
-            align-items: center;
-        }
-        
-        #shift {
-            top: 489px;
-        }
-        
-        #live {
-            top: 0;
-        }
-        
-        #ctime {
-            top: 394px;
-        }
-        
-        #cbuzzer {
-            top: 290px;
-        }
-        
-        #tickets {
-            border-left: 0.3rem solid black !important;
-        }
-        
-        #buzzer {
-            height: 156px;
-            background: #c9c9c9;
-            transform: translate(-139px, -69px) scale(0.4);
-            box-sizing: border-box;
-            width: 522px !important;
             transition: 200ms ease-in-out;
         }
         
-        #buzzer:hover {
-            transform: translate(10px, -30px) scale(1);
+        .img-fluidx:hover {
+            transform: scale(1.05);
+            opacity: 0.7;
             transition: 300ms ease-in-out;
-        }
-        
-        #ticketcell {
-            height: 340px;
-            transform: translate(-78px, -60px);
-            width: 23vw !important;
-            transition: 300ms ease-in-out;
-        }
-        
-        #ticketcell:hover {
-            transition: 400ms ease-in-out;
-            transform: translate(5px, -60px);
-        }
-        
-        #time {
-            pointer-events: none;
-            position: fixed;
-            top: 444px;
-            padding: 0 38px;
-            color: black;
-            font-weight: bold;
-            font-size: 35px;
-            left: 0;
-            z-index: 3;
-            background: #c9c9c9;
-            border-bottom-left-radius: 0;
-            width: 16vw;
-            line-height: 25px;
-        }
-        
-        .rem {
-            font-size: 12px !important;
-            float: left;
-            width: 100%;
-            text-align: center;
-            font-style: italic;
-        }
-        
-        .logout-cont {
-            width: 60%;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            z-index: 999;
-            background: white;
-            text-align: center;
-            padding: 50px;
-            box-sizing: border-box;
-            border-radius: 10px;
-            box-shadow: 0 0 0 4000px rgba(0, 0, 0, 0.95);
-            transform: translate(-50%, -50%);
-            z-index: 999;
-        }
-        
-        .logout-cont2 {
-            box-shadow: none;
-        }
-        
-        #skip {
-            transition: 200ms ease-in-out;
-            border: 1px dashed;
-        }
-        
-        #skip:hover {
-            border-color: gray;
-            transform: scale(1.1);
-            transition: 200ms ease-in-out;
-        }
-        
-        .logout-close {
-            position: fixed;
-            right: 15px;
-            top: 5px;
-            font-size: 28px;
-            color: black;
-            z-index: 99999;
-            cursor: pointer;
-        }
-        
-        .logout-select-2 {
-            display: none;
-        }
-        
-        button#skip {
-            min-width: 83px;
-        }
-        
-        .lbt:hover {
-            transform: translate(0, -0.3rem);
-            transition: 300ms ease-in-out;
-            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .lbt {
-            transition: 200ms ease-in-out;
-        }
-        
-        .nomobile {
-            color: red;
-            text-align: center;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1rem;
-        }
-        
-        #shift-dark #tickets {
-            border-color: #212529 !important;
-        }
-        
-        #shift-dark #time {
-            color: #212529;
-        }
-        
-        #shift-dark #shift,
-        #shift-dark #live,
-        #shift-dark #ctime,
-        #shift-dark #cbuzzer {
-            background: #212529;
-        }
-        
-        #shift-success #tickets {
-            border-color: #198754 !important;
-        }
-        
-        #shift-success #time {
-            color: #198754;
-        }
-        
-        #shift-success #shift,
-        #shift-success #live,
-        #shift-success #ctime,
-        #shift-success #cbuzzer {
-            background: #198754;
-        }
-        
-        #shift-secondary #tickets {
-            border-color: #0d6efd !important;
-        }
-        
-        #shift-secondary #shift,
-        #shift-secondary #live,
-        #shift-secondary #ctime,
-        #shift-secondary #cbuzzer {
-            background: #0d6efd;
-        }
-        
-        #shift-secondary #time {
-            color: #0d6efd;
-        }
-        
-        .time-seconds {
-            font-weight: normal !important;
-            font-size: 20px;
-        }
-        
-        #shift:before,
-        #live:before,
-        #ctime:before,
-        #cbuzzer::before {
-            content: "";
-            position: absolute;
-            top: 25px;
-            color: white;
-            left: 25px;
-            border-color: transparent transparent #c9c9c9 transparent;
-            border-style: solid;
-            border-width: 5px;
-        }
-        
-        #shiftCover {
-            width: 40px;
-            height: 68px;
-            background: #c9c9c9;
-            position: fixed;
-            top: 524px;
-            z-index: 9;
-            left: 173px;
-        }
-        
-        #live:before {
-            border-color: transparent transparent #dddddd transparent;
-        }
-        
-        #cbuzzer i,
-        #ctime i,
-        #live i,
-        #shift i {
-            margin-right: 10px;
-            font-size: 18px;
-            color: orange;
-        }
-        
-        #shift span {
-            font-size: 12px !important;
-            float: right;
-            top: 7px;
-            position: absolute;
-            left: 170px;
-            text-shadow: 0 3px 3px rgba(0, 0, 0, 0.5);
-        }
-        
-        .logout-select-1,
-        .loginy {
-            display: none;
-        }
-        
-        .loginx i {
-            font-size: 13px;
-        }
-        
-        #timer5 {
-            color: #dc3545;
-            font-size: 6rem;
-            text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-        }
-        
-        #timer10 {
-            color: #198754;
-        }
-        
-        #timer30 {
-            font-size: 4rem;
-            color: #198754;
         }
     </style>
 </head>
 
-<body class="ticketPage" style="overflow: hidden;">
-    <div id="ticketSpan">
-        <div class="cont container-fluid px-0">
-            <div class="row">
-                <div class="col-2 px-0" style="background-color: #c9c9c9;user-select: none;">
-                    <div id="shift"><i class='fa fa-user' aria-hidden='true'></i> Online staffs</div>
-                    <div id="live"><i class="fa fa-list-ul" aria-hidden="true"></i> Live Tickets</div>
-                    <div id="ctime">Time</div>
-                    <div id="shiftCover"></div>
-                    <div id="cbuzzer"><i class="fa fa-volume-up" aria-hidden="true"></i> Buzzer</div>
-                    <div id="time"></div>
-                    <iframe id="ticketcell" src="https://bulletlink.one/bulletlink_tickets.asp?cell=0" scrolling="no" class="border-0 w-100"></iframe>
-                    <iframe id="buzzer" src="https://bulletlink.one/ticket_status.asp" scrolling="no" class="border-0 w-100"></iframe>
-                    <iframe id="staff" src="https://bulletlink.one/bulletlink_online_staff.asp" scrolling="no" class="border-0 w-100"></iframe>
+<body>
+    <h1 class="text-center my-5 text-primary">Work Timeline - Instruction</h1>
+    <div class="container border rounded my-5 py-5 shadow-lg">
+        <ul>
+            <ol>
+                <li class="mb-3">Open spreadsheet file as per current month. For example, <b>"Adnan - January".</b></li>
 
+                <li class="mb-3">Search for the <b>"Don't Modify"</b> tab in the spreadsheet. Make sure not to make any changes in this tab as it's just used for creating new tabs.</li>
 
-                </div>
-                <div class="ticket_page col-10 position-relative bg-body px-0" style="z-index: 2;">
-                    <iframe id="tickets" src="https://bulletlink.one/bulletlink_tickets.asp?" class="border-0 w-100 px-0" style="height: 100vh;"></iframe>
-                </div>
-            </div>
-        </div>
-        <script>
-            // Disable Ticket page on mobile
-            if (window.screen.width < 1025) {
-                document.getElementsByTagName('body')[0].innerHTML = "<h1 class='nomobile'>This page is only accessible on Computer</h1>";
-            }
+                <li class="mb-3">Click on the down arrow icon as shown in the below screenshot.<br>
+                    <img onclick="OpenPopup3('https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_1.jpg','image')" class="img-fluidx border rounded shadow mt-1" src="https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_1.jpg">
+                </li>
 
+                <li class="mb-3">Click on the <b>"Duplicate"</b> option to make a copy of this tab. See screenshot below,<br>
+                    <img onclick="OpenPopup3('https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_3.jpg','image')" class="img-fluidx border rounded shadow mt-1" src="https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_3.jpg">
+                </li>
 
-            // Shift Text
-            if (window.location.href.indexOf("?t=") != -1) {
-                document.getElementById('ctime').innerHTML = "<i class='fa fa-clock-o' aria-hidden='true'></i> Time Remaining";
-            }
-            if (window.location.href.indexOf("?t=03:00") != -1) {
-                document.getElementById('shift').innerHTML = "<i class='fa fa-user' aria-hidden='true'></i> Online Staffs <span class='badge rounded-pill bg-danger ms-2'>Night</span>";
-                // document.getElementsByClassName('ticketPage')[0].setAttribute('id', 'shift-dark');
-            }
-            if (window.location.href.indexOf("?t=11:00") != -1) {
-                document.getElementById('shift').innerHTML = "<i class='fa fa-user' aria-hidden='true'></i> Online Staffs <span class='badge rounded-pill bg-danger ms-2'>Night</span>";
-                // document.getElementsByClassName('ticketPage')[0].setAttribute('id', 'shift-success');
-            }
-            if (window.location.href.indexOf("?t=19:30") != -1) {
-                document.getElementById('shift').innerHTML = "<i class='fa fa-user' aria-hidden='true'></i> Online Staffs <span class='badge rounded-pill bg-danger ms-2'>Day</span>";
-                //  document.getElementsByClassName('ticketPage')[0].setAttribute('id', 'shift-secondary');
-            }
+                <li class="mb-3">Double tap <b>"Copy of Don't Modify"</b> tab. Rename this tab name as today's date such as "01", "02", etc. See screenshot,<br>
+                    <img onclick="OpenPopup3('https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_2.jpg','image')" class="img-fluidx border rounded shadow mt-1" src="https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_2.jpg">
+                </li>
 
-            // Namaz time assign
-            var fazar = "06:25:00";
-            var zohar = "13:41:00";
-            var asar = "17:15:00";
-            var isha = "20:26:00";
-
-            // Lunch, Dinner
-            var lunch = "14:05:00";
-            var dinner = "21:05:00";
-
-            // Buzzer - Refresh in 15 seconds
-            setInterval(function() {
-                buzzer.src = buzzer.src;
-                document.getElementById('cbuzzer').innerHTML = '<i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Buzzer';
-                setTimeout(function() {
-                    document.getElementById('cbuzzer').innerHTML = '<i class="fa fa-volume-up" aria-hidden="true"></i> Buzzer';
-                }, 3000);
-            }, 15000);
-
-            // Ticket Page - Refresh in 60 seconds
-            setInterval(function() {
-                ticketcell.src = ticketcell.src;
-                document.getElementById('live').innerHTML = '<i class="fa fa-refresh fa-spin" aria-hidden="true"></i> Live Tickets';
-                setTimeout(function() {
-                    document.getElementById('live').innerHTML = '<i class="fa fa-list-ul" aria-hidden="true"></i> Live Tickets';
-                }, 3000);
-            }, 60000);
-
-            // Online Staff Page - Refresh in 5 minutes
-            setInterval(function() {
-                staff.src = staff.src;
-            }, 300000);
-
-            // Start Timer and Other functions
-            var s = setInterval(function() {
-                var d = new Date();
-                if (window.location.href.indexOf("?t=19:30") != -1) {
-                    var d2 = new Date();
-                    var d = new Date(d2);
-                    d.setMinutes(d2.getMinutes() + 30);
-                }
-                var h = d.getHours();
-                if (h < 10) {
-                    h = "0" + h;
-                }
-                var m = d.getMinutes();
-                if (m < 10) {
-                    m = "0" + m;
-                }
-                var s = d.getSeconds();
-                if (s < 10) {
-                    s = "0" + s;
-                }
-                var t = h + ":" + m + ":" + s;
-                var tn = h + ":" + m + "<span class='time-seconds'>:" + s + "</span>";
-
-                var dz = new Date();
-                var hz = dz.getHours();
-                if (hz < 10) {
-                    hz = "0" + hz;
-                }
-                var mz = dz.getMinutes();
-                if (mz < 10) {
-                    mz = "0" + mz;
-                }
-                var sz = dz.getSeconds();
-                if (sz < 10) {
-                    sz = "0" + sz;
-                }
-                var tz = hz + ":" + mz + ":" + sz;
-
-                // Namaz
-                if (tz.indexOf(fazar) != -1) {
-                    alert("<audio style='display:none;' controls autoplay><source src='https://www.naataudio.com/downloads/IslamicRingtones/Allah-hu-Allah-New-ringtone.mp3' type='audio/mpeg'></audio><i class='fa fa-moon-o mb-3 text-success' style='font-size:3rem' aria-hidden='true'></i><br>Fazar Namaz Time", "Going now!");
-                }
-                if (tz.indexOf(zohar) != -1) {
-                    alert("<audio style='display:none;' controls autoplay><source src='https://www.naataudio.com/downloads/IslamicRingtones/Allah-hu-Allah-New-ringtone.mp3' type='audio/mpeg'></audio><i class='fa fa-moon-o mb-3 text-success' style='font-size:3rem' aria-hidden='true'></i><br>Zohar Namaz Time", "Going now!");
-                }
-                if (tz.indexOf(asar) != -1) {
-                    alert("<audio style='display:none;' controls autoplay><source src='https://www.naataudio.com/downloads/IslamicRingtones/Allah-hu-Allah-New-ringtone.mp3' type='audio/mpeg'></audio><i class='fa fa-moon-o mb-3 text-success' style='font-size:3rem' aria-hidden='true'></i><br>Asar Namaz Time", "Going now!");
-                }
-                if (tz.indexOf(isha) != -1) {
-                    alert("<audio style='display:none;' controls autoplay><source src='https://www.naataudio.com/downloads/IslamicRingtones/Allah-hu-Allah-New-ringtone.mp3' type='audio/mpeg'></audio><i class='fa fa-moon-o mb-3 text-success' style='font-size:3rem' aria-hidden='true'></i><br>Isha Namaz Time", "Going now!");
-                }
-
-                // Lunch - Dinner
-                if (tz.indexOf(dinner) != -1) {
-                    alert("<audio style='display:none;' controls autoplay><source src='https://soundbible.com/mp3/Electrical_Sweep-Sweeper-1760111493.mp3' type='audio/mpeg'></audio><i class='fa fa-cutlery mb-3 text-danger' style='font-size:3rem' aria-hidden='true'></i><br>Dinner Time", "Go now!");
-                }
-                if (tz.indexOf(lunch) != -1) {
-                    alert("<audio style='display:none;' controls autoplay><source src='https://soundbible.com/mp3/Electrical_Sweep-Sweeper-1760111493.mp3' type='audio/mpeg'></audio><i class='fa fa-cutlery mb-3 text-danger' style='font-size:3rem' aria-hidden='true'></i><br>Lunch Time", "Go now!");
-                }
-
-                // If time is set with "t" parameter
-                if (window.location.href.indexOf("?t=") != -1) {
-                    var url = location.href;
-                    var urlx = new URL(url);
-                    var parm = urlx.searchParams.get("t");
-                    if (parm == "skip") {
-                        time.innerHTML = tn;
-                        document.getElementById('ctime').innerHTML = "<i class='fa fa-clock-o' aria-hidden='true'></i> Time Now";
-                    } else if (parm == "logout") {
-                        time.innerHTML = "Logout NOW!";
-                        document.getElementById('ctime').innerHTML = "<i class='fa fa-clock-o' aria-hidden='true'></i> Time Now";
-                    } else {
-                        var hx = parm.split(':')[0];
-                        var mx = parm.split(':')[1];
-                        if (hx == '19' && mx == '30') {
-                            hx = '20';
-                            mx = '00';
-                        }
-                        if (hx < h) {
-                            hx = parseInt(hx) + 23 - h;
-                            if (hx < 10) {
-                                hx = "0" + hx;
-                            }
-                        } else if (hx == h) {
-                            hx = "00";
-                        } else if (hx > h) {
-                            hx = parseInt(hx) - h - 1;
-                            if (hx < 10) {
-                                hx = "0" + hx;
-                            }
-                        }
-                        if (mx <= m) {
-                            mx = parseInt(mx) + 59 - m;
-                            if (mx < 10) {
-                                mx = "0" + mx;
-                            }
-                        } else if (mx > m) {
-                            mx = mx - m;
-                            if (mx < 10) {
-                                mx = "0" + mx;
-                            }
-                        } //else if (mx == m) {
-                        //     mx = "00";
-                        // }
-                        var sx = 59 - s;
-                        if (sx < 10) {
-                            sx = "0" + sx;
-                        }
-                        var tx = hx + ":" + mx + ":" + sx;
-                        var ttx = hx + ":" + mx + "<span class='time-seconds'>:" + sx + "</span>";
-
-                        // Rest Time - after each 30 minutes
-                        if (tx.indexOf('07:00:00') != -1 || tx.indexOf('07:30:00') != -1 || tx.indexOf('06:00:00') != -1 || tx.indexOf('06:30:00') != -1 || tx.indexOf('05:00:00') != -1 || tx.indexOf('05:30:00') != -1 || tx.indexOf('04:00:00') != -1 || tx.indexOf('04:30:00') != -1 || tx.indexOf('03:00:00') != -1 || tx.indexOf('03:30:00') != -1 || tx.indexOf('02:00:00') != -1 || tx.indexOf('02:30:00') != -1 || tx.indexOf('01:00:00') != -1 || tx.indexOf('01:30:00') != -1 || tx.indexOf('00:30:00') != -1) {
-                            alert("<audio style='display:none;' controls autoplay><source src='https://mobcup.net/d/7ttndh2w/mp3' type='audio/mpeg'></audio><i class='fa fa-exclamation-triangle mb-3 text-dark' style='font-size:3rem;color:orange !important;' aria-hidden='true'></i><br>For the love of your work, please take a break!<br><span id='timer5'>05:00</span><script><\/script>", "Close");
-                        }
-
-
-                        // Logout in 10 Minutes
-                        if (tx.indexOf('00:10:00') != -1) {
-                            alert("<audio style='display:none;' controls autoplay><source src='https://soundbible.com/mp3/Typing%20On%20Computer%20Keyboard-SoundBible.com-1096684006.mp3' type='audio/mpeg'></audio><i class='fa fa-sign-out mb-3 text-danger' style='font-size:3rem' aria-hidden='true'></i><br>Logout in <span id='timer10'>10:00</span> Minutes", "Got it!");
-                        }
-
-                        // Logout Now
-                        if (tx.indexOf('00:00:30') != -1) {
-                            window.history.replaceState({}, document.title, "" + "?t=logout");
-                            document.title = "Logout NOW!";
-                            time.innerHTML = "Logout NOW!";
-                            document.head.insertAdjacentHTML("beforeend", "<style>#time {color:blue;font-size: 20px;}</style>");
-                            alert("<audio style='display:none;' controls autoplay><source src='https://soundbible.com/mp3/Typing%20On%20Computer%20Keyboard-SoundBible.com-1096684006.mp3' type='audio/mpeg'></audio><i class='fa fa-sign-out mb-2 text-danger' style='font-size:3rem' aria-hidden='true'></i><br><span id='timer30'>00:30</span><br>Logout time. Visit <a class='text-decoration-none' target='_blank' href='https://bulletlink.one/bulletlink_attendance.asp'>Logout</a> page.", "Close");
-                            clearInterval(s);
-                        } else {
-                            document.title = tx;
-                        }
-                        time.innerHTML = "-" + ttx;
-                    }
-                } else {
-                    time.innerHTML = tn;
-                }
-            }, 1000);
-        </script>
+                <li class="mb-3">Change the <b>Date</b> and <b>Shift Time</b> in the header as show in screenshot below. Here, Date is in dd/mm/yy format. For example, 01/12/22.<br>
+                    <img onclick="OpenPopup3('https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_4.jpg','image')" class="img-fluidx border rounded shadow mt-1" src="https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_4.jpg">
+                </li>
+                <li class="mb-3">Below is the Sample work timeline for your reference.<br>
+                    <img onclick="OpenPopup3('https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_5.jpg','image')" class="img-fluidx border rounded shadow mt-1" src="https://github.com/githubbyad/ticket/raw/main/docs/Screenshot_5.jpg">
+                </li>
+            </ol>
+        </ul>
     </div>
-    <script>
-        // If Logout time not set
-        if (window.location.href.indexOf("?t=") == -1) {
-            document.getElementById('ticketSpan').innerHTML = "<div class='logout-cont'><div class='loginx'><p class='fs-5 mb-5'><b>Did you login?</b><p id='login'><button type='button' id='loginx' class='btn btn-primary px-5 me-3'>Yes</button><button type='button' id='loginy' class='btn btn-danger px-5' data-bs-toggle='tooltip' data-bs-html='true' title='<b>This will open Ticket Login page in new Tab. After login, come back to this page.</b>'>No</button></p></b></p><p class='mt-5'></div><div class='logout-select-1'><p class='mb-5 fs-5'><b>Select <span class='text-danger'>Logout</span> Time from below:</b></p><p id='logout-buttons'><button data-bs-toggle='tooltip' data-bs-html='true' title='<b>11:00 AM to 07:30 PM<br></b>' type='button' data-time='19:30' class='lbt btn btn-primary mb-5 me-5 fs-3'>07:30 PM</button><button data-bs-toggle='tooltip' data-bs-html='true' title='<b>07:30 PM to 03:00 AM</b>' type='button' data-time='03:00' class='lbt btn btn-dark mb-5 me-5 fs-3'>03:00 AM</button><button data-bs-toggle='tooltip' data-bs-html='true' title='<b>03:00 AM to 11:00 AM</b>' type='button' data-time='11:00' class='lbt btn btn-success mb-5 fs-3'>11:00 AM</button></p><p id='logout-confirm'><button type='button' id='skip' class='btn btn-light'>skip</button></p></div></div>";
-        }
-        if (document.getElementById('skip')) {
-            document.getElementById('skip').addEventListener('click', function() {
-                window.location.href = "?t=skip";
-            });
-            for (i = 0; i < document.getElementsByClassName('lbt').length; i++) {
-                document.getElementsByClassName('lbt')[i].addEventListener('click', function() {
-                    window.location.href = "?t=" + this.getAttribute('data-time');
-                })
-            }
-        }
-        if (document.getElementById('loginx')) {
-            document.getElementById('loginx').addEventListener('click', function() {
-                document.getElementsByClassName('loginx')[0].style.display = "none";
-                document.getElementsByClassName('logout-select-1')[0].style.display = "block";
-            });
-        }
-        if (document.getElementById('loginy')) {
-            document.getElementById('loginy').addEventListener('click', function() {
-                window.open('https://bulletlink.one/bulletlink_tasks.asp', '_blank')
-                document.getElementsByClassName('loginx')[0].style.display = "none";
-                document.getElementsByClassName('logout-select-1')[0].style.display = "block";
-            });
-        }
-    </script>
-    <script>
-        setTimeout(function() {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl)
-            });
-        }, 1000);
-    </script>
+    <p class="mt-2 mb-5 pt-2 text-danger text-center fs-4">Make sure to fillout this Work Timeline daily before logout.</p>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script>
-        if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1 != true) {
-            document.getElementById('ticketSpan').innerHTML = "<div class='logout-cont logout-cont2'><i class='fa fa-exclamation-triangle mb-5 text-dark' style='font-size:6rem;color:gray !important;' aria-hidden='true'></i><br><h5>This ticket page will only work with <span class='text-danger'>FireFox</span> browser.<br><br>Thank you.</h5></div>";
-        }
-    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
 </body>
 
 </html>
